@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="300">
+  <title>宏观及风险监控面板</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 20px;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+    }
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 20px; margin: 0; }
+    .meta { color: var(--muted); font-size: 13px; }
+    #refreshBtn {
+      background: #2563eb; color: #fff; border: none; border-radius: 6px;
+      padding: 6px 14px; font-size: 13px; cursor: pointer;
+    }
+    #refreshBtn:hover { background: #1d4ed8; }
+    .group { margin-bottom: 22px; }
+    .group-title {
+      font-size: 15px; font-weight: 600; color: #cbd5e1;
+      margin: 14px 0 10px; padding-left: 8px;
+      border-left: 3px solid #64748b;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--card); border-radius: 10px; padding: 12px;
+      border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0,0,0,.2);
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: transform .1s;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .name { font-size: 14px; font-weight: 600; line-height: 1.3; }
+    .code { font-size: 11px; color: var(--muted); }
+    .badge {
+      font-size: 11px; font-weight: 700; color: #fff;
+      padding: 3px 8px; border-radius: 999px; white-space: nowrap;
+    }
+    .scores { display: flex; gap: 8px; margin: 10px 0; font-size: 12px; }
+    .score { flex: 1; text-align: center; padding: 6px; border-radius: 6px; background: #0f172a; }
+    .score-label { color: var(--muted); font-size: 10px; margin-bottom: 2px; }
+    .score-val { font-weight: 700; font-size: 15px; }
+    .tip { font-size: 12px; color: #cbd5e1; line-height: 1.4; margin-top: 6px; }
+    .marks { font-size: 11px; color: #fbbf24; margin-top: 6px; min-height: 16px; }
+    .empty { color: var(--muted); font-size: 13px; padding: 10px; }
+    footer { margin-top: 20px; color: var(--muted); font-size: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>宏观及风险监控面板</h1>
+      <div class="meta" id="meta">加载中…</div>
+    </div>
+    <button id="refreshBtn" onclick="location.reload()">刷新</button>
+  </header>
+  <div id="board"></div>
+  <footer>只做状态提示，不构成任何买卖建议 · 每 5 分钟自动刷新</footer>
+
+  <script src="data.js"></script>
+  <script>
+    const STATE_COLORS = {
+      "底部盘整": "#64748b",
+      "启动": "#16a34a",
+      "趋势延续": "#15803d",
+      "加速/过热": "#ea580c",
+      "高位派筹": "#7c3aed",
+      "破位下跌": "#dc2626",
+      "恐慌投降": "#991b1b",
+      "筑底修复": "#059669"
+    };
+
+    function render() {
+      if (typeof DASHBOARD_DATA === 'undefined') {
+        document.getElementById('board').innerHTML =
+          '<div class="empty">尚未生成数据，请先运行 monitor.run</div>';
+        return;
+      }
+      const d = DASHBOARD_DATA;
+      document.getElementById('meta').textContent =
+        `数据日期：${d.date} · 生成时间：${d.gen_time} · 共 ${d.total} 个品种`;
+
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+
+      if (!d.groups || d.groups.length === 0) {
+        board.innerHTML = '<div class="empty">暂无品种数据</div>';
+        return;
+      }
+
+      d.groups.forEach(g => {
+        const section = document.createElement('div');
+        section.className = 'group';
+        const title = document.createElement('div');
+        title.className = 'group-title';
+        title.textContent = `${g.category} · ${g.sector}`;
+        section.appendChild(title);
+
+        const cards = document.createElement('div');
+        cards.className = 'cards';
+
+        g.items.forEach(item => {
+          const color = STATE_COLORS[item.state] || '#64748b';
+          const el = document.createElement('div');
+          el.className = 'card';
+          el.innerHTML = `
+            <div class="card-top">
+              <div>
+                <div class="name">${item.name}</div>
+                <div class="code">${item.code}</div>
+              </div>
+              <span class="badge" style="background:${color}">${item.state}</span>
+            </div>
+            <div class="day-change" style="font-size:12px;color:${item.day_change >= 0 ? '#4ade80' : '#f87171'};margin:4px 0;">
+              日涨跌 ${item.day_change >= 0 ? '+' : ''}${item.day_change}%
+            </div>
+            <div class="scores">
+              <div class="score">
+                <div class="score-label">过热</div>
+                <div class="score-val" style="color:${item.overheat >= 80 ? '#f87171' : '#cbd5e1'}">${item.overheat}</div>
+              </div>
+              <div class="score">
+                <div class="score-label">恐慌</div>
+                <div class="score-val" style="color:${item.capit >= 80 ? '#f87171' : '#cbd5e1'}">${item.capit}</div>
+              </div>
+            </div>
+            <div class="marks">${item.marks || ''}</div>
+            <div class="tip">${item.tip}</div>
+          `;
+          cards.appendChild(el);
+        });
+
+        section.appendChild(cards);
+        board.appendChild(section);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

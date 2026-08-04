@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+env/
+venv/
+
+# Generated / cache
+data/*.csv
+reports/*.md
+reports/*.html
+reports/*.pdf
+reports/*.json
+reports/*.csv
+reports/*.txt
+case_library/*.csv
+dashboard/data.js
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/

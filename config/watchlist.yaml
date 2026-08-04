@@ -1,0 +1,32 @@
+# 品种池：code 为缓存文件名（data/<code>.csv），source 决定数据适配器
+# source 取值: okx / nasdaq / naver / em_index / ak_index / ak_sge / ak_futures
+symbols:
+  - code: BTC-USD
+    name: 比特币
+    source: okx          # OKX BTC-USDT 日线（yfinance 被限流时的可用源）
+    category: 加密
+  - code: XAG
+    name: 白银(沪银主连)
+    source: ak_futures   # akshare futures_main_sina AG0
+    category: 商品
+  - code: SNDK
+    name: 闪迪
+    source: nasdaq       # api.nasdaq.com 历史日线
+    category: 美股
+  - code: 000660.KS
+    name: SK海力士
+    source: naver        # Naver fchart 000660
+    category: 韩股
+  - code: sh000300
+    name: 沪深300
+    source: ak_index     # akshare stock_zh_index_daily
+    category: A股指数
+  - code: NDX
+    name: 纳斯达克100
+    source: nasdaq       # api.nasdaq.com 指数历史（无成交量）
+    assetclass: index
+    category: 海外指数
+  - code: XAU
+    name: 黄金(Au99.99)
+    source: ak_sge       # akshare spot_hist_sge（无成交量）
+    category: 贵金属

@@ -1,0 +1,362 @@
+# 案例库首期 50 段（价格层）。window 为事件锚定搜索窗口（YYYY-MM）。
+# source 与 monitor/data.py 适配器一致；ak_symbol 仅期货需要。
+segments:
+  # A. 用户点名泡沫（21）
+  - case_id: CSCO_1998_2002
+    code: CSCO
+    name: 思科
+    source: nasdaq
+    category: 美股
+    bubble: us_dotcom_2000
+    window: ["1998-01", "2002-12"]
+  - case_id: QCOM_1998_2002
+    code: QCOM
+    name: 高通
+    source: nasdaq
+    category: 美股
+    bubble: us_dotcom_2000
+    window: ["1998-01", "2002-12"]
+  - case_id: AIG_2006_2009
+    code: AIG
+    name: AIG
+    source: nasdaq
+    category: 美股
+    bubble: us_gfc_2008
+    window: ["2006-01", "2009-12"]
+  - case_id: 300750.SZ_2020_2024
+    code: 300750.SZ
+    name: 宁德时代
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: 002594.SZ_2020_2024
+    code: 002594.SZ
+    name: 比亚迪
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: 601012.SH_2020_2024
+    code: 601012.SH
+    name: 隆基绿能
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: 300274.SZ_2020_2024
+    code: 300274.SZ
+    name: 阳光电源
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: 002466.SZ_2020_2024
+    code: 002466.SZ
+    name: 天齐锂业
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: 002460.SZ_2020_2024
+    code: 002460.SZ
+    name: 赣锋锂业
+    source: ak_stock
+    category: A股
+    bubble: cn_nev_2020
+    window: ["2020-01", "2024-12"]
+  - case_id: ZM_2020_2022
+    code: ZM
+    name: Zoom
+    source: nasdaq
+    category: 美股
+    bubble: ark_covid_2020
+    window: ["2020-01", "2022-12"]
+  - case_id: ROKU_2020_2022
+    code: ROKU
+    name: Roku
+    source: nasdaq
+    category: 美股
+    bubble: ark_covid_2020
+    window: ["2020-01", "2022-12"]
+  - case_id: SNOW_2020_2022
+    code: SNOW
+    name: Snowflake
+    source: nasdaq
+    category: 美股
+    bubble: ark_covid_2020
+    window: ["2020-01", "2022-12"]
+  - case_id: LCID_2021_2024
+    code: LCID
+    name: Lucid
+    source: nasdaq
+    category: 美股
+    bubble: spac_extreme  # 极端对照：快牛快熊
+    window: ["2021-01", "2024-12"]
+  - case_id: RIVN_2021_2024
+    code: RIVN
+    name: Rivian
+    source: nasdaq
+    category: 美股
+    bubble: spac_extreme  # 极端对照：快牛快熊
+    window: ["2021-01", "2024-12"]
+  - case_id: GME_2020_2022
+    code: GME
+    name: GameStop
+    source: nasdaq
+    category: 美股
+    bubble: meme_squeeze_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: AMC_2020_2022
+    code: AMC
+    name: AMC
+    source: nasdaq
+    category: 美股
+    bubble: meme_squeeze_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: BTC-USD_2020_2022
+    code: BTC-USD
+    name: 比特币
+    source: okx
+    category: 加密
+    bubble: crypto_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: BABA_2020_2022
+    code: BABA
+    name: 阿里巴巴
+    source: nasdaq
+    category: 美股
+    bubble: china_adr_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: 0700.HK_2020_2022
+    code: 0700.HK
+    name: 腾讯控股
+    source: ak_hk
+    category: 港股
+    bubble: china_adr_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: 3690.HK_2020_2022
+    code: 3690.HK
+    name: 美团
+    source: ak_hk
+    category: 港股
+    bubble: china_adr_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: PDD_2020_2022
+    code: PDD
+    name: 拼多多
+    source: nasdaq
+    category: 美股
+    bubble: china_adr_2021
+    window: ["2020-01", "2022-12"]
+
+  # B. 金银铜油碳酸锂（9）
+  # 黄金完整生命周期：2011 顶 → 2015 底（上金所仅 2016 起，改用 COMEX GC=F）
+  - case_id: GCF_2008_2015
+    code: GC=F
+    name: COMEX黄金期货
+    source: nasdaq
+    category: 贵金属
+    bubble: gold_cycle
+    window: ["2008-01", "2015-12"]
+  # 白银完整生命周期：2011 顶 → 2015 底（用 SI=F；沪银主连近年未走完一轮）
+  - case_id: SIF_2008_2015
+    code: SI=F
+    name: COMEX白银期货
+    source: nasdaq
+    category: 商品
+    bubble: silver_cycle
+    window: ["2008-01", "2015-12"]
+  # 注：XAU/AU0/AG0 自 2016 起的上涨目前仍属「上涨中有回调」，不进完整段；
+  # 待走完一轮后再升格。见 half_cycles 备注。
+  # 铜完整轮：2001/02 起 → 2008-07 顶 → 2008-12 谷（COMEX HG=F；沪铜主连仅自 2005）
+  - case_id: HGF_2001_2009
+    code: HG=F
+    name: COMEX铜期货
+    source: nasdaq
+    category: 商品
+    bubble: copper_china_wto
+    window: ["2001-11", "2009-03"]
+  # 近十年铜无完整牛熊，改用棕榈油 2020-03→2022-03→2023-05/06
+  - case_id: P0_2020_2023
+    code: P0
+    name: 棕榈油主连
+    source: ak_futures
+    ak_symbol: P0
+    category: 商品
+    bubble: palm_covid
+    window: ["2020-01", "2023-08"]
+  - case_id: CLF_2007_2009
+    code: CL=F
+    name: WTI原油期货
+    source: nasdaq
+    category: 商品
+    bubble: oil_gfc
+    window: ["2007-01", "2009-12"]
+  - case_id: CLF_2014_2016
+    code: CL=F
+    name: WTI原油期货
+    source: nasdaq
+    category: 商品
+    bubble: oil_shale
+    window: ["2014-01", "2016-12"]
+  - case_id: SC0_2020_2022
+    code: SC0
+    name: 原油主连
+    source: ak_futures
+    ak_symbol: SC0
+    category: 商品
+    bubble: oil_covid
+    window: ["2020-01", "2022-12"]
+  # 碳酸锂现货/期货：LC0 仅 2023-07 起，无法覆盖 2021→2022 天价顶。
+  # 暂用天齐锂业作价格代理（2021 起涨→2022 顶→2024/25 深跌）；现货序列有源后再替换。
+  - case_id: 002466.SZ_2021_2025
+    code: 002466.SZ
+    name: 天齐锂业(碳酸锂周期代理)
+    source: ak_stock
+    category: A股
+    bubble: lithium_bust
+    window: ["2021-01", "2025-03"]
+
+  # C. 其他历史完整泡沫周期（20）
+  - case_id: AMZN_1998_2002
+    code: AMZN
+    name: 亚马逊
+    source: nasdaq
+    category: 美股
+    bubble: us_dotcom_2000
+    window: ["1998-01", "2002-12"]
+  - case_id: INTC_1998_2002
+    code: INTC
+    name: 英特尔
+    source: nasdaq
+    category: 美股
+    bubble: us_dotcom_2000
+    window: ["1998-01", "2002-12"]
+  - case_id: BAC_2006_2009
+    code: BAC
+    name: 美国银行
+    source: nasdaq
+    category: 美股
+    bubble: us_gfc_2008
+    window: ["2006-01", "2009-12"]
+  - case_id: C_2006_2009
+    code: C
+    name: 花旗
+    source: nasdaq
+    category: 美股
+    bubble: us_gfc_2008
+    window: ["2006-01", "2009-12"]
+  - case_id: 601766.SH_2014_2016
+    code: 601766.SH
+    name: 中国中车
+    source: ak_stock
+    category: A股
+    bubble: cn_bubble_2015
+    window: ["2014-01", "2016-12"]
+  - case_id: 300059.SZ_2014_2016
+    code: 300059.SZ
+    name: 东方财富
+    source: ak_stock
+    category: A股
+    bubble: cn_bubble_2015
+    window: ["2014-01", "2016-12"]
+  - case_id: 300033.SZ_2022_2024
+    code: 300033.SZ
+    name: 同花顺
+    source: ak_stock
+    category: A股
+    bubble: cn_software_2023
+    window: ["2022-10", "2024-09"]
+  - case_id: 600030.SH_2014_2016
+    code: 600030.SH
+    name: 中信证券
+    source: ak_stock
+    category: A股
+    bubble: cn_bubble_2015
+    window: ["2014-01", "2016-12"]
+  # 2015-01 底 → 2017-12 顶 → 2018-12-15 谷（OKX 缓存不足时 Yahoo 回退）
+  - case_id: BTC-USD_2015_2018
+    code: BTC-USD
+    name: 比特币
+    source: okx
+    yahoo_code: BTC-USD
+    category: 加密
+    bubble: crypto_2017
+    window: ["2015-01", "2018-12"]
+  # BTC 2022-10→2025-10：与黄金 2016→今同类，熊段未确认走完 → 不进完整段
+  # - case_id: BTC-USD_2023_2025  # half-cycle, excluded
+  - case_id: 510300.SH_2014_2016
+    code: 510300.SH
+    name: 沪深300ETF
+    source: ak_etf
+    category: ETF
+    bubble: cn_bubble_2015
+    window: ["2014-01", "2016-12"]
+  # 注册牛：2019-01 起 → 主升（数据峰约 2020-07）→ 跌至 2024-07/09 一带
+  - case_id: 000300.SH_2019_2024
+    code: 000300.SH
+    name: 沪深300
+    source: ak_etf
+    category: ETF
+    bubble: cn_broker_register
+    window: ["2019-01", "2024-09"]
+  - case_id: 159915.SZ_2014_2018
+    code: 159915.SZ
+    name: 创业板ETF
+    source: ak_etf
+    category: ETF
+    bubble: cn_bubble_2015
+    window: ["2014-01", "2018-12"]
+  - case_id: 000300.SH_2020_2022
+    code: 000300.SH
+    name: 沪深300
+    source: ak_etf
+    category: LOF
+    bubble: oil_covid
+    window: ["2020-01", "2022-12"]
+  # 518880 黄金ETF 2018→今：与现货黄金同属未走完一轮，不进完整段
+  - case_id: GLD_2008_2015
+    code: GLD
+    name: SPDR黄金ETF
+    source: nasdaq
+    category: ETF
+    bubble: gold_cycle
+    window: ["2008-01", "2015-12"]
+  - case_id: TSLA_2019_2022
+    code: TSLA
+    name: 特斯拉
+    source: nasdaq
+    category: 美股
+    bubble: ark_covid_2020
+    window: ["2019-01", "2022-12"]
+  - case_id: NVDA_2020_2022
+    code: NVDA
+    name: 英伟达
+    source: nasdaq
+    category: 美股
+    bubble: chip_2021
+    window: ["2020-01", "2022-12"]
+  - case_id: RB0_2020_2024
+    code: RB0
+    name: 螺纹钢主连
+    source: ak_futures
+    ak_symbol: RB0
+    category: 商品
+    bubble: cn_commodity
+    window: ["2020-01", "2024-12"]
+  - case_id: I0_2020_2024
+    code: I0
+    name: 铁矿石主连
+    source: ak_futures
+    ak_symbol: I0
+    category: 商品
+    bubble: cn_commodity
+    window: ["2020-01", "2024-12"]
+  - case_id: 600519.SH_2018_2024
+    code: 600519.SH
+    name: 贵州茅台
+    source: ak_stock
+    category: A股
+    bubble: cn_consumer_cycle
+    window: ["2018-01", "2024-12"]
