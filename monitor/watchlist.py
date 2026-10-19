@@ -1,7 +1,7 @@
 """CLI 工具：管理观察清单 config/my_watchlist.yaml。
 
 用法：
-    python -m monitor.watchlist add 000300.SH ak_stock 沪深300 A股
+    python -m monitor.watchlist add 000300.SH ak_index 沪深300 A股
     python -m monitor.watchlist list
     python -m monitor.watchlist remove 000300.SH
     python -m monitor.watchlist --watchlist config/my_watchlist.yaml list

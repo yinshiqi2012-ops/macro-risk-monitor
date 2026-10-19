@@ -119,7 +119,7 @@ def _cn_market(code):
 
 
 def _split_code(code):
-    """将 000300.SH / 000300.SH / 0700.HK 等拆分出纯数字和交易所。"""
+    """将 600519.SH / 000300.SH / 0700.HK 等拆分出纯数字和交易所。"""
     if "." in code:
         base, suffix = code.rsplit(".", 1)
         suffix = suffix.upper()
@@ -142,7 +142,7 @@ def _market_for_code(code):
 
 
 def _tx_symbol(code):
-    """转换为 akshare.stock_zh_a_hist_tx 接口 symbol，例如 sz300573 / hk09992。"""
+    """转换为 akshare.stock_zh_a_hist_tx 接口 symbol，例如 sh600519 / hk09992。"""
     base, suffix = _split_code(code)
     if suffix == "hk":
         # 港股在腾讯接口需要 5 位数字，前补 0

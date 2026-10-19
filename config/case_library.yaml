@@ -294,13 +294,6 @@ segments:
     bubble: cn_bubble_2015
     window: ["2014-01", "2016-12"]
   # 注册牛：2019-01 起 → 主升（数据峰约 2020-07）→ 跌至 2024-07/09 一带
-  - case_id: 000300.SH_2019_2024
-    code: 000300.SH
-    name: 沪深300
-    source: ak_etf
-    category: ETF
-    bubble: cn_broker_register
-    window: ["2019-01", "2024-09"]
   - case_id: 159915.SZ_2014_2018
     code: 159915.SZ
     name: 创业板ETF
@@ -308,14 +301,6 @@ segments:
     category: ETF
     bubble: cn_bubble_2015
     window: ["2014-01", "2018-12"]
-  - case_id: 000300.SH_2020_2022
-    code: 000300.SH
-    name: 沪深300
-    source: ak_etf
-    category: LOF
-    bubble: oil_covid
-    window: ["2020-01", "2022-12"]
-  # 518880 黄金ETF 2018→今：与现货黄金同属未走完一轮，不进完整段
   - case_id: GLD_2008_2015
     code: GLD
     name: SPDR黄金ETF

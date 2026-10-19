@@ -19,7 +19,7 @@ python3 -m venv .venv
 .venv/bin/python -m monitor.run --watchlist config/my_watchlist.yaml # 使用自定义清单
 .venv/bin/python -m monitor.scan --watchlist config/my_watchlist.yaml --state 破位下跌 --state 恐慌投降
 .venv/bin/python -m monitor.backfill --watchlist config/my_watchlist.yaml # 批量补全缓存
-.venv/bin/python -m monitor.watchlist add 000300.SH ak_stock 沪深300 A股 # 管理清单
+.venv/bin/python -m monitor.watchlist add 000300.SH ak_index 沪深300 A股 # 管理清单
 .venv/bin/python scripts/check_crashes.py       # 六案例历史核对（4 崩盘回归 + 2 牛市上半场）
 ```
 

@@ -31,7 +31,7 @@ class TestMarketParsing(unittest.TestCase):
         self.assertEqual(_tx_symbol("00700.HK"), "hk00700")
 
     def test_split_code_with_dot(self):
-        self.assertEqual(_split_code("000300.SH"), ("300573", "sz"))
+        self.assertEqual(_split_code("600519.SH"), ("300573", "sz"))
         self.assertEqual(_split_code("000660.KS"), ("000660", "ks"))
 
     def test_split_code_bare(self):
