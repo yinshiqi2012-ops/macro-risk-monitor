@@ -1,0 +1,19 @@
+# 自定义观察清单模板
+#
+# 个人清单不要提交到版本库：文件命名为 config/my_watchlist.yaml 时已被 .gitignore 忽略。
+# 最简单的建法是用 CLI 逐条添加：
+#   python -m monitor.watchlist add 000300.SH ak_index 沪深300 A股
+#
+# 也可以复制本文件为 config/my_watchlist.yaml 后自行编辑。
+source_options: okx | nasdaq | naver | em_index | ak_index | ak_sge | ak_futures |
+  ak_stock | ak_etf | ak_hk | ak_global_index
+symbols:
+- code: 000300.SH
+  name: 沪深300
+  source: ak_index
+  category: A股
+  sector: 宽基指数
+- code: BTC-USD
+  name: 比特币
+  source: okx
+  category: 加密

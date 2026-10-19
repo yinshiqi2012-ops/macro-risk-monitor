@@ -31,3 +31,4 @@ dashboard/data.js
 
 # 个人自选清单，不进版本库
 config/my_watchlist*.yaml
+!config/my_watchlist.example.yaml
